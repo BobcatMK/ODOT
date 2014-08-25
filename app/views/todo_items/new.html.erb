@@ -1,0 +1,6 @@
+<%= form_for [@todo_list,@todo_item] do |item| %>
+	<%= item.label :content %>
+	<%= item.text_field :content %>
+	
+	<%= item.submit "Save" %>
+<% end %>
