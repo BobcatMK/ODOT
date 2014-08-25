@@ -1,15 +1,16 @@
 <h1><%= @todo_list.title %></h1>
 <p>Find me in app/views/todo_items/index.html.erb</p>
 
-<ul class="todo_items">
+<table class="todo_items">
 	<% @todo_list.todo_items.each do |todo_items| %>
-		<li id=<%= dom_id(todo_items) %>>
-			<%= todo_items.content %>
-			<%= link_to "Edit", edit_todo_list_todo_item_path(todo_items) %> <!-- Poprzez dodanie w kontrolerze metody url_options nie trzeba juz wpisywac @todo_list przed todo_items -->
-			<%= link_to "Delete", todo_list_todo_item_path(todo_items), method: :delete, data: {confirm: "Are you sure?"} %>
-		</li>
+		<tr id=<%= dom_id(todo_items) %>>
+			<td><%= todo_items.content %></td>
+			<td><%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_items),method: :patch %></td>
+			<td><%= link_to "Edit", edit_todo_list_todo_item_path(todo_items) %></td> <!-- Poprzez dodanie w kontrolerze metody url_options nie trzeba juz wpisywac @todo_list przed todo_items -->
+			<td><%= link_to "Delete", todo_list_todo_item_path(todo_items), method: :delete, data: {confirm: "Are you sure?"} %></td>
+		</tr>
 	<% end %>
-</ul>
+</table>
 
 <p>
 	<%= link_to "New Todo Item", new_todo_list_todo_item_path %>
