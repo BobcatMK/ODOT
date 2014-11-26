@@ -4,8 +4,11 @@
 <table class="todo_items">
 	<% @todo_list.todo_items.each do |todo_items| %>
 		<tr id=<%= dom_id(todo_items) %>>
+			<td><%= todo_items.completed_at %></td>
 			<td><%= todo_items.content %></td>
-			<td><%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_items),method: :patch %></td>
+			<% if todo_items.completed_at.blank? %>
+				<td><%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_items),method: :patch %></td>
+			<% end %>
 			<td><%= link_to "Edit", edit_todo_list_todo_item_path(todo_items) %></td> <!-- Poprzez dodanie w kontrolerze metody url_options nie trzeba juz wpisywac @todo_list przed todo_items -->
 			<td><%= link_to "Delete", todo_list_todo_item_path(todo_items), method: :delete, data: {confirm: "Are you sure?"} %></td>
 		</tr>
